@@ -1,0 +1,12 @@
+%{"bbmustache": {:hex, :bbmustache, "1.0.3"},
+  "conform": {:hex, :conform, "0.17.0"},
+  "cowboy": {:hex, :cowboy, "1.0.4"},
+  "cowlib": {:hex, :cowlib, "1.0.2"},
+  "erlware_commons": {:hex, :erlware_commons, "0.15.0"},
+  "exrm": {:hex, :exrm, "0.19.9"},
+  "getopt": {:hex, :getopt, "0.8.2"},
+  "neotoma": {:hex, :neotoma, "1.7.3"},
+  "plug": {:hex, :plug, "1.1.0"},
+  "providers": {:hex, :providers, "1.4.1"},
+  "ranch": {:hex, :ranch, "1.2.1"},
+  "relx": {:hex, :relx, "3.5.0"}}

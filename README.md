@@ -6,7 +6,7 @@
 To run or build the code you must first run `mix deps.get`
 
 ## Running
-`iex -S mix` will run the code.
+`mix run --no-halt` will run the code.
 
 The server can be accessed at `http://localhost:4000`
 

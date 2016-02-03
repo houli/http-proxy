@@ -5,6 +5,11 @@ defmodule Proxy.Router do
   plug :match
   plug :dispatch
 
+  get "/" do
+    conn
+    |> send_resp(200, "Access proxy at http://localhost:4000/proxy/someurl")
+  end
+
   get "/proxy/:url" do
     {:ok, resp} = HTTPoison.get url
 

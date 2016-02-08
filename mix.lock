@@ -15,4 +15,5 @@
   "providers": {:hex, :providers, "1.4.1"},
   "ranch": {:hex, :ranch, "1.2.1"},
   "relx": {:hex, :relx, "3.5.0"},
+  "socket": {:hex, :socket, "0.3.1"},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"}}

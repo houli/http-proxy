@@ -14,7 +14,7 @@ defmodule Proxy.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy, :plug, :httpoison],
+    [applications: [:logger, :cowboy, :plug, :httpoison, :socket],
      mod: {Proxy, []}]
   end
 
@@ -31,6 +31,7 @@ defmodule Proxy.Mixfile do
     [{:cowboy, "~> 1.0.0"},
      {:plug, "~> 1.0"},
      {:exrm, "~> 0.19.0"},
-     {:httpoison, "~> 0.8.0"}]
+     {:httpoison, "~> 0.8.0"},
+     {:socket, "~> 0.3.0"}]
   end
 end

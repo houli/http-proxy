@@ -15,11 +15,12 @@ defmodule Proxy do
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Proxy.Supervisor]
-    IO.puts "Proxy server running on http://localhost:8080"
+    port = Application.get_env(:proxy, :port)
+    IO.puts "Proxy server running on http://localhost:#{port}"
     Supervisor.start_link(children, opts)
   end
 
   def run do
-    {:ok, _} = Plug.Adapters.Cowboy.http Proxy.Router, [], port: 8080
+    {:ok, _} = Plug.Adapters.Cowboy.http Proxy.Router, [], port: Application.get_env(:proxy, :port)
   end
 end

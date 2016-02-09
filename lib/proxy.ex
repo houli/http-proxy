@@ -1,6 +1,7 @@
 defmodule Proxy do
   use Application
 
+  @port Application.get_env :proxy, :port
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
@@ -15,12 +16,11 @@ defmodule Proxy do
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Proxy.Supervisor]
-    port = Application.get_env(:proxy, :port)
-    IO.puts "Proxy server running on http://localhost:#{port}"
+    IO.puts "Proxy server running on localhost:#{@port}"
     Supervisor.start_link(children, opts)
   end
 
   def run do
-    {:ok, _} = Plug.Adapters.Cowboy.http Proxy.Router, [], port: Application.get_env(:proxy, :port)
+    {:ok, _} = Plug.Adapters.Cowboy.http Proxy.Router, [], port: @port
   end
 end

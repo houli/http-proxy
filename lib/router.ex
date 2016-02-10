@@ -16,8 +16,12 @@ defmodule Proxy.Router do
     end
   end
 
-  defp build_url(conn) do
-    conn.host <> conn.request_path
+  defp build_url(%Plug.Conn{host: host, path_info: path_info, query_string: query_string}) do
+    url = host <> "/" <> Enum.join(path_info, "/")
+    case query_string do
+      "" -> url
+      _ -> url <> "?" <> query_string
+    end
   end
 
   defp parse_connect(conn) do
@@ -31,8 +35,6 @@ defmodule Proxy.Router do
   end
 
   match _ do
-    url = build_url conn
-
     case method = String.to_atom(conn.method) do
       :CONNECT ->
         client_sock = conn.adapter |> elem(1) |> elem(1)
@@ -49,6 +51,7 @@ defmodule Proxy.Router do
         Logger.info "Tunnel connection to #{host}:#{port} closed"
         %{conn | state: :sent}
       _ ->
+        url = build_url conn
         body = build_body conn, ""
         {:ok, resp} = HTTPoison.request method, url, body, conn.req_headers
 

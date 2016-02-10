@@ -18,7 +18,15 @@ defmodule Proxy.Blocklist do
     Agent.update(@name, &MapSet.delete(&1, host))
   end
 
+  def unblock_all do
+    Agent.update(@name, fn _ -> MapSet.new end)
+  end
+
   def get_all do
     Agent.get(@name, &MapSet.to_list(&1))
+  end
+
+  def size do
+    Agent.get(@name, &MapSet.size(&1))
   end
 end

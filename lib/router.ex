@@ -3,6 +3,7 @@ defmodule Proxy.Router do
   require Logger
 
   plug Plug.Logger
+  plug Proxy.BlockPlug
   plug :match
   plug :dispatch
 

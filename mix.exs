@@ -14,7 +14,14 @@ defmodule Proxy.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy, :plug, :httpoison, :socket],
+    [applications: [:logger,
+                    :cowboy,
+                    :plug,
+                    :httpoison,
+                    :socket,
+                    :observer,
+                    :wx,
+                    :runtime_tools],
      mod: {Proxy, []}]
   end
 

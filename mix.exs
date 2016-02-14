@@ -39,6 +39,6 @@ defmodule Proxy.Mixfile do
      {:plug, "~> 1.0"},
      {:exrm, "~> 0.19.0"},
      {:httpoison, "~> 0.8.0"},
-     {:socket, "~> 0.3.0"}]
+     {:socket, github: "bitwalker/elixir-socket"}]
   end
 end

@@ -10,7 +10,7 @@ defmodule Proxy do
     children = [
       # Define workers and child supervisors to be supervised
       # worker(Proxy.Worker, [arg1, arg2, arg3]),
-      worker(__MODULE__, [], function: :run),
+      worker(Proxy.ProxyPlug, []),
       worker(Proxy.Blocklist, [])
     ]
 
@@ -19,9 +19,5 @@ defmodule Proxy do
     opts = [strategy: :one_for_one, name: Proxy.Supervisor]
     IO.puts "Proxy server running on localhost:#{@port}"
     Supervisor.start_link(children, opts)
-  end
-
-  def run do
-    {:ok, _} = Plug.Adapters.Cowboy.http Proxy.Router, [], port: @port
   end
 end

@@ -1,4 +1,4 @@
-defmodule Proxy.Blocklist do
+defmodule Proxy.BlockList do
 
   @name __MODULE__
 

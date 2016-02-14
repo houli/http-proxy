@@ -1,6 +1,6 @@
 defmodule Proxy.BlockPlug do
   import Plug.Conn
-  import Proxy.Blocklist
+  import Proxy.BlockList
   require Logger
 
   def init(opts), do: opts

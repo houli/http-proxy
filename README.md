@@ -31,14 +31,14 @@ $ MIX_ENV=prod mix release
 
 You'll then be able to package up the release folder or run the executable `rel/proxy/bin/proxy`
 
-## Blocklist
-You can dynamically block particular hosts using the console
+## Blocking Hosts
+You can dynamically block particular hosts using the console.
 First create a release as described above.
 Then start up the proxy. If you want it to run in the background use
 ```bash
 $ rel/proxy/bin/proxy start
 ```
-If you want to see the logs use the following instead
+If you want to see the logs use the following instead:
 ```bash
 $ rel/proxy/bin/proxy foreground
 ```
@@ -48,10 +48,14 @@ $ rel/proxy/bin/proxy remote_console
 ```
 In the console you can call functions such as
 
-`Proxy.Blocklist.block "google.com"`
+`Proxy.BlockList.block "google.com"`
 
-`Proxy.Blocklist.unblock "google.com"`
+`Proxy.BlockList.unblock "google.com"`
 
-`Proxy.Blocklist.unblock_all`
+`Proxy.BlockList.unblock_all`
+
+To save typing fully qualified function names enter `import Proxy.BlockList`.
+
+Now you can use `block` `unblock` `unblock_all` etc. without typing the module name.
 
 All future requests to hosts specified will be blocked

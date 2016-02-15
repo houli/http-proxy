@@ -11,7 +11,7 @@ defmodule Proxy.BlockList do
   end
 
   def block(host) do
-    Agent.update(@name, &MapSet.put(&1, host))
+    Agent.update(@name, &MapSet.put(&1, String.downcase(host)))
   end
 
   def unblock(host) do

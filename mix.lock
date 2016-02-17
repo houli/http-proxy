@@ -11,7 +11,7 @@
   "idna": {:hex, :idna, "1.0.3"},
   "mimerl": {:hex, :mimerl, "1.0.2"},
   "neotoma": {:hex, :neotoma, "1.7.3"},
-  "plug": {:hex, :plug, "1.1.0"},
+  "plug": {:hex, :plug, "1.1.1"},
   "providers": {:hex, :providers, "1.4.1"},
   "ranch": {:hex, :ranch, "1.2.1"},
   "relx": {:hex, :relx, "3.5.0"},

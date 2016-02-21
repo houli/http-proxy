@@ -9,12 +9,12 @@ defmodule Proxy.CachePlug do
     url = Utils.build_url(conn)
     case Cache.lookup(Utils.build_url(conn)) do
       {:ok, resp} ->
-        Logger.info("HIT #{url}")
+        Logger.info "HIT #{url}"
         %{conn | resp_headers: resp.headers}
         |> send_resp(resp.status_code, resp.body)
         |> halt
       :error ->
-        Logger.info("MISS #{url}")
+        Logger.info "MISS #{url}"
         conn
     end
   end

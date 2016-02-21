@@ -36,7 +36,7 @@ defmodule Proxy.Cache do
   end
 
   def handle_info({:expire, url}, cache) do
-    Logger.info("Cache entry #{url} expired")
+    Logger.info "Cache entry #{url} expired"
     :ets.delete(cache, url)
     {:noreply, cache}
   end
@@ -54,7 +54,7 @@ defmodule Proxy.Cache do
       nil -> false
       control ->
         if Regex.match?(~r/no-store/i, control) do
-          Logger.info("Not caching #{url}. no-store header found")
+          Logger.info "Not caching #{url}. no-store header found"
           true
         else
           case Regex.run(~r/max-age=(\d+)/, control) do
@@ -82,7 +82,7 @@ defmodule Proxy.Cache do
   end
 
   defp cache_for(seconds, url, resp, cache) do
-    Logger.info("Caching #{url} for #{seconds} seconds")
+    Logger.info "Caching #{url} for #{seconds} seconds"
     :ets.insert(cache, {url, resp})
     Process.send_after(self, {:expire, url}, seconds * 1000)
   end

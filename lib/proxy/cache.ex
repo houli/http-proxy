@@ -1,10 +1,11 @@
 defmodule Proxy.Cache do
-  use GenServer, Timex
+  use GenServer
+  use Timex
   alias Proxy.Utils
   require Logger
 
   @name __MODULE__
-  @default_cache_time 30
+  @default_cache_time Time.to_secs(10, :mins)
 
   def start_link do
     GenServer.start_link(@name, [], name: @name)

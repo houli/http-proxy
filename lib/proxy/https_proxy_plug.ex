@@ -8,7 +8,7 @@ defmodule Proxy.HttpsProxyPlug do
     client_sock = conn.adapter |> elem(1) |> elem(1)
     {host, port} = parse_connect conn
     sock = Socket.TCP.connect! host, port
-    Logger.info "Tunnel connection to #{host}:#{port} opened"
+    Logger.info "Tunnel #{host}:#{port} opened"
     client_sock |> Socket.Stream.send!("HTTP/1.1 200 Connection established\r\n\r\n")
     t1 = Task.async(fn -> ssl_stream(client_sock, sock) end)
     t2 = Task.async(fn -> ssl_stream(sock, client_sock) end)
@@ -16,7 +16,7 @@ defmodule Proxy.HttpsProxyPlug do
     Enum.map(tasks, fn {task, _res} ->
       Task.shutdown(task, :brutal_kill)
     end)
-    Logger.info "Tunnel connection to #{host}:#{port} closed"
+    Logger.info "Tunnel #{host}:#{port} closed"
     %{conn | state: :sent}
     |> halt
   end

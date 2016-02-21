@@ -19,6 +19,7 @@ defmodule Proxy.Mixfile do
                     :plug,
                     :httpoison,
                     :socket,
+                    :timex,
                     :observer,
                     :wx,
                     :runtime_tools],
@@ -39,6 +40,7 @@ defmodule Proxy.Mixfile do
      {:plug, "~> 1.0"},
      {:exrm, "~> 0.19.0"},
      {:httpoison, "~> 0.8.0"},
-     {:socket, github: "bitwalker/elixir-socket"}]
+     {:socket, github: "bitwalker/elixir-socket"},
+     {:timex, "~> 1.0.0"}]
   end
 end

@@ -1,5 +1,6 @@
 %{"bbmustache": {:hex, :bbmustache, "1.0.3"},
   "certifi": {:hex, :certifi, "0.3.0"},
+  "combine": {:hex, :combine, "0.7.0"},
   "conform": {:hex, :conform, "0.17.0"},
   "cowboy": {:hex, :cowboy, "1.0.4"},
   "cowlib": {:hex, :cowlib, "1.0.2"},
@@ -16,4 +17,6 @@
   "ranch": {:hex, :ranch, "1.2.1"},
   "relx": {:hex, :relx, "3.5.0"},
   "socket": {:git, "https://github.com/bitwalker/elixir-socket.git", "e3ae093c7ad8992a475a0cd47e6fc968311908ed", []},
-  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"}}
+  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
+  "timex": {:hex, :timex, "1.0.1"},
+  "tzdata": {:hex, :tzdata, "0.5.6"}}

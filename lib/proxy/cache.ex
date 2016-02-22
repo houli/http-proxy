@@ -12,7 +12,7 @@ defmodule Proxy.Cache do
   end
 
   def init(_opts) do
-    {:ok, :ets.new(@name, [read_concurrency: true])}
+    {:ok, :ets.new(@name, [:named_table, read_concurrency: true])}
   end
 
   def insert(url, resp) do
@@ -20,7 +20,7 @@ defmodule Proxy.Cache do
   end
 
   def lookup(url) do
-    case GenServer.call(@name, {:lookup, url}) do
+    case :ets.lookup(@name, url) do
       [{_, resp}] -> {:ok, resp}
       [] -> :error
     end
@@ -29,10 +29,6 @@ defmodule Proxy.Cache do
   def handle_call({:cache, url, resp}, _from, cache) do
     cache_entry(url, resp, cache)
     {:reply, :ok, cache}
-  end
-
-  def handle_call({:lookup, url}, _from, cache) do
-    {:reply, :ets.lookup(cache, url), cache}
   end
 
   def handle_info({:expire, url}, cache) do

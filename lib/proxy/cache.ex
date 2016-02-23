@@ -12,6 +12,7 @@ defmodule Proxy.Cache do
   end
 
   def init(_opts) do
+    # Create a new ETS table to store the cached items
     {:ok, :ets.new(@name, [:named_table, read_concurrency: true])}
   end
 
@@ -20,6 +21,7 @@ defmodule Proxy.Cache do
   end
 
   def lookup(url) do
+    # Lookup the cached entry
     case :ets.lookup(@name, url) do
       [{_, resp}] -> {:ok, resp}
       [] -> :error
@@ -39,6 +41,7 @@ defmodule Proxy.Cache do
   def handle_info(_, cache), do: {:noreply, cache}
 
   defp cache_entry(url, resp, cache) do
+    # If finished after cache_control do nothing otherwise use expires header
     cached = cache_control_handler(url, resp, cache)
     if !cached do
       expires_handler(url, resp, cache)
@@ -67,8 +70,10 @@ defmodule Proxy.Cache do
   defp expires_handler(url, resp, cache) do
     case Utils.header_value("expires", resp.headers) do
       nil ->
+        # No caching headers found, cache for set amount of time
         cache_for(@default_cache_time, url, resp, cache)
       date ->
+        # Expires header found, parse date and cache until expiry time
         (date
         |> DateFormat.parse("{RFC1123}")
         |> elem(1)

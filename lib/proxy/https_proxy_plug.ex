@@ -19,6 +19,7 @@ defmodule Proxy.HttpsProxyPlug do
   end
 
   defp establish_connection(conn) do
+    # Open up the tunnel and send 200 back to the browser
     {host, port} = parse_connect conn
     Logger.info "Tunnel #{host}:#{port} opened"
     conn
@@ -32,6 +33,7 @@ defmodule Proxy.HttpsProxyPlug do
   defp ssl_task_handle(conn) do
     client = conn.assigns.client_sock
     remote = conn.assigns.remote_sock
+    # Stream encrypted data from client->remote and remote->client
     tasks = Task.yield_many([
       Task.async(fn -> ssl_stream(client, remote) end),
       Task.async(fn -> ssl_stream(remote, client) end)

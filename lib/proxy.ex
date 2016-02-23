@@ -7,6 +7,7 @@ defmodule Proxy do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+    # Start up components of our application
     children = [
       worker(Proxy.ProxyPlug, []),
       worker(Proxy.BlockList, []),

@@ -13,6 +13,7 @@ defmodule Proxy.HttpProxyPlug do
       {:ok, resp} ->
         headers = List.keydelete resp.headers, "Transfer-Encoding", 0
         if method == :GET do
+          # Cache GET requests only
           Cache.insert(url, %{resp | headers: headers})
         end
         %{conn | resp_headers: headers}
